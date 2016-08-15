@@ -15,3 +15,7 @@ td {
 tr:nth-child(2n+1) {
   background-color: #ddd;
 }
+
+p {
+  margin: 0;
+}

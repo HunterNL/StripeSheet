@@ -3,7 +3,11 @@
     {{#if editing}}
       {{>field_edit document=document field=field}} <button data-action="abort">Cancel</button>
     {{else}}
-      {{value}}
+      {{#if field.parseMarkdown}}
+        {{#markdown}}{{value}}{{/markdown}}
+      {{else}}
+        {{value}}
+      {{/if}}
     {{/if}}
   </td>
 </template>
