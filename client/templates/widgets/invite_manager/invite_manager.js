@@ -8,7 +8,6 @@ Template.invite_manager.onRendered(function(){
 
 Template.invite_manager.events({
   "click [data-action=invite_create]" :function (e,tmp) {
-    console.log(e);
     Meteor.call("invite_create");
   },
   

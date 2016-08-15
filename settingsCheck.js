@@ -6,6 +6,10 @@ function includes(arr,val) {
   });
 }
 
+if(typeof Meteor.settings.public.token_expire_hours !== "number") {
+  throw new Meteor.Error("no_token_expire_data","No token expire date set properly, check if public.token_expire_hours is set to a number");
+}
+
 if(!fields) {
   throw new Meteor.Error("no_fields","No fields detected, please make sure your settings contains public.fields with an array of possible fields");
 }

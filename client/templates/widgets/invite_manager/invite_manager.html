@@ -1,7 +1,7 @@
 <template name="invite_manager">
-  <h3>Token manager</h3>
+  <h3>Invite manager</h3>
   {{#each invites}}
     <div>{{date_created}} {{token}} <button data-action="invite_remove">Delete</button></div>
   {{/each}}
-  <button data-action="invite_create">New token</button>
+  <button data-action="invite_create">New invite</button>
 </template>
