@@ -7,7 +7,9 @@ Template.document.onRendered(function(){
 });
 
 Template.document.events({
-
+  "click [data-action=document_remove]" :function (e,tmp) {
+    Meteor.call('doc_remove',this.document._id);
+  }
 });
 
 Template.document.helpers({

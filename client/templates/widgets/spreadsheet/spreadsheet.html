@@ -4,6 +4,9 @@
       {{#each field in fields}}
         <td>{{field.name}}</td>
       {{/each}}
+      {{#if isAdmin}}
+        <td></td>
+      {{/if}}
     </thead>
     <tbody>
       {{#each doc in documents}}

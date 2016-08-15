@@ -3,5 +3,8 @@
     {{#each field in fields}}
       {{>document_field field=field document=document}}
     {{/each}}
+    {{#if isAdmin}}
+      <td><button data-action="document_remove">Delete</button></td>
+    {{/if}}
   </tr>
 </template>
