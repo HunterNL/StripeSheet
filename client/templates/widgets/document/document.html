@@ -1,5 +1,5 @@
 <template name="document">
-  <tr>
+  <tr class={{classesFor document fields}}>
     {{#each field in fields}}
       <td>{{>document_field field=field document=document}}</td>
     {{/each}}
