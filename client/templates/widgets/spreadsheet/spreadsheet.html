@@ -1,0 +1,15 @@
+<template name="spreadsheet">
+  <table>
+    <thead>
+      {{#each field in fields}}
+        <td>{{field.name}}</td>
+      {{/each}}
+    </thead>
+    <tbody>
+      {{#each doc in documents}}
+        {{>document document=doc}}
+      {{/each}}
+    </tbody>
+  </table>
+  {{>new_document}}
+</template>
