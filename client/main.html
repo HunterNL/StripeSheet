@@ -3,23 +3,78 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
+  {{>loginButtons}}
+  {{#if currentUser}}
+    {{>spreadsheet}}
+    
+    {{#if isAdmin}}
+      {{>invite_manager}}
+    {{/if}}
+  {{else}}
+    {{>create_account}}
+  {{/if}}
+    
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="spreadsheet">
+  <table>
+    <thead>
+      {{#each field in fields}}
+        <td>{{field.name}}</td>
+      {{/each}}
+    </thead>
+    <tbody>
+      {{#each doc in documents}}
+        {{>document document=doc}}
+      {{/each}}
+    </tbody>
+  </table>
+  {{>new_document}}
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+
+<template name="document">
+  <tr>
+    {{#each field in fields}}
+      <td>{{>document_field field=field document=document}}</td>
+    {{/each}}
+  </tr>
+</template>
+
+<template name="document_field">
+  {{value}}
+</template>
+
+<template name="new_document">
+  <form>
+    {{#each field in fields}}
+      {{>input_for_field field=field}}
+    {{/each}}
+  <input type="submit">
+  </form>
+</template>
+
+<template name="input_for_field">
+  <label>{{field.name}}<input type={{getInputType field}} value={{field.default}} data-field={{field.dbField}}></label>
+</template>
+
+<template name="cell">
+  {{value}}
+</template>
+
+<template name="create_account">
+  <form>
+    <label>Email<input type="email" data-field="email"></label>
+    <label>Password<input type="password" data-field="password"></label>
+    <label>Token<input type="text" data-field="token"></label>
+    <input type="submit">
+  </form>
+</template>
+
+<template name="invite_manager">
+  <h3>Token manager</h3>
+  {{#each invites}}
+    <div>{{date_created}} {{token}} <button data-action="invite_remove">Delete</button></div>
+  {{/each}}
+  <button data-action="invite_create">New token</button>
 </template>
