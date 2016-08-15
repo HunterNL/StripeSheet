@@ -1,5 +1,5 @@
 Template.document_field.onCreated(function(){
-
+  this.editing = new ReactiveVar(false);
 });
 
 Template.document_field.onRendered(function(){
@@ -7,12 +7,40 @@ Template.document_field.onRendered(function(){
 });
 
 Template.document_field.events({
-
+  "click [data-action=edit]" :function (e,tmp) {
+    if(e.target.dataset.action==="abort") return; //Prevent instant re-rediting
+    
+    
+    tmp.editing.set(true);
+  },
+  
+  "click [data-action=abort]" :function (e,tmp) {
+    console.log(e,tmp);
+    tmp.editing.set(false);
+  },
+  
+  "submit" : function (e,tmp) {
+    e.preventDefault();
+    var field = this.field.dbField;
+    var value = tmp.find("[data-field]").value;
+    
+    var updateObj = {};
+    updateObj[field]=value;
+    
+    
+    Meteor.call("doc_update",this.document._id,updateObj);
+    tmp.editing.set(false);
+  }
+  
 });
 
 Template.document_field.helpers({
   value() {
     return this.document[this.field.dbField];
+  },
+  
+  editing() {
+    return Template.instance().editing.get();
   }
 });
 

@@ -1,0 +1,14 @@
+<template name="field_edit">
+  <form>
+    {{#if isDropdown field}}  
+      <select data-field={{field.dbField}}>
+        {{#each choice in field.choices}}
+          <option value={{choice}} {{maybeSelected choice}}>{{choice}}</option>
+        {{/each}}
+      </select>
+    {{else}}
+      <input type={{getInputType field}} value={{getValue}} data-field={{field.dbField}}>
+    {{/if}}
+    <input type="submit">
+  </form>
+</template>
