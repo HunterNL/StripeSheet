@@ -53,8 +53,6 @@ Template.spreadsheet.helpers({
     var sortDir = tmp.sortDir.get();
     var sortBy = tmp.sortBy.get();
     
-    console.log(dbField,sortDir,sortBy);
-    
     if(dbField !== sortBy || typeof sortBy === "undefined") {
       return "fa fa-unsorted";
     }

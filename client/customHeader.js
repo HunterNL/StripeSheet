@@ -23,8 +23,6 @@ function addCSS(head) {
   
   if(typeof cssFiles === "undefined") return; //If nothing, abort
   
-  console.log(cssFiles);
-  
   var documentFragment = document.createDocumentFragment();
   var file,link;
   

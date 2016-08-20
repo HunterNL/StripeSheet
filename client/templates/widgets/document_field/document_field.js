@@ -54,7 +54,6 @@ Template.document_field.events({
   },
   
   "click [data-action=abort]" :function (e,tmp) {
-    console.log(e,tmp);
     tmp.editing.set(false);
   },
   

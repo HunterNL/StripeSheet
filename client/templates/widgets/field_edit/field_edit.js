@@ -31,7 +31,6 @@ Template.field_edit.helpers({
   },
   
   maybeSelected(option) {
-    console.log(Template.currentData());
     
     if(option == this.document[this.field.dbField]) {
       return {selected:"selected"};
