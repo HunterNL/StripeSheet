@@ -1,7 +1,21 @@
 <template name="invite_manager">
   <h3>Invite manager</h3>
-  {{#each invites}}
-    <div>{{date_created}} {{token}} <button data-action="invite_remove">Delete</button></div>
-  {{/each}}
+  <table class="invite_table">
+    <thead>
+      <tr>
+        <td>Invite time</td>
+        <td>Invite key</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each invites}}
+        <tr>
+          <td>{{date_created}}</td>
+          <td>{{token}}</td>
+          <td><button data-action="invite_remove">Delete</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
   <button data-action="invite_create">New invite</button>
 </template>
