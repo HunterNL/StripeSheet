@@ -37,7 +37,7 @@ Template.document_field.onCreated(function(){
     if(!eventOriginatedFromTemplate(e,this)) {
       this.editing.set(false);
     }
-  };
+  }.bind(this);
 });
 
 Template.document_field.onRendered(function(){
