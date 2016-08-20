@@ -7,7 +7,11 @@ function requireUser() {
 function requireAdmin() {
   var user = Meteor.user();
   
-  if(!user && user.isAdmin) {
+  if(!user) {
+    throw new Meteor.Error("unauthorized");
+  }
+  
+  if(!user.isAdmin) {
     throw new Meteor.Error("unauthorized");
   }
 }
