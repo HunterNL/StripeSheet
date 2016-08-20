@@ -19,3 +19,7 @@ tr:nth-child(2n+1) {
 p {
   margin: 0;
 }
+
+.new_document_form {
+  display: table-row;
+}
