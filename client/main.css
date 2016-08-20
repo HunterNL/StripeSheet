@@ -23,3 +23,7 @@ p {
 .new_document_form {
   display: table-row;
 }
+
+.sort_indicator {
+  float: right; /* TODO dont use floats */
+}

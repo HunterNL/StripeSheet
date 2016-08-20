@@ -2,7 +2,7 @@
   <table class="spreadsheet_table">
     <thead>
       {{#each field in fields}}
-        <td>{{field.name}}</td>
+        <td>{{field.name}} <span data-action="sort_set" data-sortfield={{field.dbField}} class="sort_indicator {{faClass field.dbField}}"></span></td>
       {{/each}}
       {{#if isAdmin}}
         <td></td>
