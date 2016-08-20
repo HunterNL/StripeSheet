@@ -1,5 +1,5 @@
 Template.document.onCreated(function(){
-
+  
 });
 
 Template.document.onRendered(function(){
@@ -22,6 +22,11 @@ Template.document.helpers({
         classes.push(document[field.dbField]);
       }
     });
+    
+    if(window.location.hash === "#"+document._id) {
+      classes.push("highlighted");
+    }
+
     
     return classes.join(" ");
   }
