@@ -3,7 +3,7 @@ function isFirstUser() {
 }
 
 function isExpired(invite) {
-  var expire_hours = Meteor.settings.public.token_expire_hours
+  var expire_hours = Meteor.settings.public.tokenExpireHours
   var expire_point = new Date(invite.date_created.getTime()+1000*60*60*expire_hours);
   
   return (new Date() > expire_point);
