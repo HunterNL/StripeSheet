@@ -1,8 +1,13 @@
 <template name="create_account">
   <form>
+    {{#if isMakingAdminUser}}
+      <span>Create an admin user</span>
+    {{else}}
+      <span>Create new user account</span>
+    {{/if}}
     <label>Email<input type="email" data-field="email"></label>
     <label>Password<input type="password" data-field="password"></label>
-    <label>Token<input type="text" data-field="token"></label>
+    {{#unless isMakingAdminUser}}<label>Invite key<input type="text" data-field="token"></label>{{/unless}}
     <input type="submit">
   </form>
 </template>

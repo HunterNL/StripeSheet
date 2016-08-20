@@ -54,5 +54,9 @@ Meteor.methods({
     
     check(id,String);
     Invites.remove({_id:id});
+  },
+  
+  has_no_users() {
+    return Meteor.users.find().count()===0;
   }
 });
