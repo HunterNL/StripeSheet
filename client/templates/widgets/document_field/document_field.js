@@ -9,7 +9,7 @@ function includes(arr,val) {
 function isInTemplate(node,template) {
   var view = Blaze.getView(node);
   
-  if(!view) return false;
+  if(!view || typeof view.templateInstance !== "function") return false;
   
   var templateInstance = view.templateInstance();
   
