@@ -1,9 +1,48 @@
+var KEY_ESCAPE = 27;
+
+function includes(arr,val) {
+  return arr.some(function(element) {
+    return val === element;
+  });
+}
+
+function isInTemplate(node,template) {
+  var view = Blaze.getView(node);
+  
+  if(!view) return false;
+  
+  var templateInstance = view.templateInstance();
+  
+  return (templateInstance === template);
+}
+
+function eventOriginatedFromTemplate(e,template) {
+  var currentNode = e.target;
+  
+  while(currentNode) {
+    if(isInTemplate(currentNode,template)) {
+      return true;
+    }
+    
+    currentNode = currentNode.parentElement;
+  }
+  
+  return false;
+}
+
 Template.document_field.onCreated(function(){
   this.editing = new ReactiveVar(false);
+  
+  this.onClick = function(e) {
+    if(!eventOriginatedFromTemplate(e,this)) {
+      this.editing.set(false);
+    }
+  };
 });
 
 Template.document_field.onRendered(function(){
-
+  //TODO optimize me #performance
+  window.addEventListener("click",this.onClick);
 });
 
 Template.document_field.events({
@@ -30,6 +69,11 @@ Template.document_field.events({
     
     Meteor.call("doc_update",this.document._id,updateObj);
     tmp.editing.set(false);
+  },
+  
+  "keydown input" : function (e,tmp) {
+    if(e.which !== KEY_ESCAPE) return;
+    tmp.editing.set(false);
   }
   
 });
@@ -44,4 +88,6 @@ Template.document_field.helpers({
   }
 });
 
-
+Template.onDestroyed(function () {
+  window.removeEventListener("click",this.onClick);
+});
