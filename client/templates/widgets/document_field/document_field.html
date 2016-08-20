@@ -1,5 +1,5 @@
 <template name="document_field">
-  <td data-action="edit">
+  <td data-action="edit" class={{markdownClass field.parseMarkdown}}>
     {{#if editing}}
       {{>field_edit document=document field=field}} <button data-action="abort">Cancel</button>
     {{else}}

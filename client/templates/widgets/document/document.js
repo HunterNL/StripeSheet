@@ -18,7 +18,7 @@ Template.document.helpers({
     var classes = [];
     
     fields.forEach(function(field) {
-      if(field.addsClass) {
+      if(field.addClass) {
         classes.push(document[field.dbField]);
       }
     });

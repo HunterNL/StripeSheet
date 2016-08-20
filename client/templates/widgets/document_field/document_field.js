@@ -84,6 +84,12 @@ Template.document_field.helpers({
   
   editing() {
     return Template.instance().editing.get();
+  },
+  
+  markdownClass(bool) {
+    if(bool) {
+      return "markdown";
+    }
   }
 });
 

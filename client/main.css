@@ -1,22 +1,10 @@
 /* CSS declarations go here */
-table {
-  border-collapse: collapse;
-  margin: 10px;
+
+.sort_indicator {
+  float: right; /* TODO dont use floats */
 }
 
-table,tr,td,tbody,thead {
-  border: 1px solid #333;
-}
-
-td {
-  padding: 4px;
-}
-
-tr:nth-child(2n+1) {
-  background-color: #ddd;
-}
-
-p {
+table .markdown p {
   margin: 0;
 }
 
@@ -24,6 +12,3 @@ p {
   display: table-row;
 }
 
-.sort_indicator {
-  float: right; /* TODO dont use floats */
-}

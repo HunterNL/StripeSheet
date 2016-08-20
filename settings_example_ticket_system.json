@@ -1,0 +1,32 @@
+{
+  "public" : {
+    "tokenExpireHours" : 24,
+    "dbCollectionName" : "tickets",
+    "cssFiles" : ["custom_style.css","default_style.css"],
+    "title" : "Ticket system",
+    "fields" : [
+      {
+        "name" : "Title",
+        "type" : "string",
+        "default" : "New ticket",
+        "dbField" : "title",
+        "addClass" : false,
+        "parseMarkdown" : false
+      },{
+        "name" : "description",
+        "type" : "string",
+        "default" :"New description",
+        "dbField" : "description",
+        "addClass" : false,
+        "parseMarkdown" : true
+      },{
+        "name" : "priority",
+        "type" : "choice",
+        "choices" : ["low","medium","high"],
+        "default" : "low",
+        "dbField" : "priority",
+        "addClass" : true
+      }
+    ]
+  }
+}
