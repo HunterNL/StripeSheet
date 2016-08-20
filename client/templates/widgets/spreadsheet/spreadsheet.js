@@ -40,6 +40,10 @@ Template.spreadsheet.helpers({
     var sortBy = tmp.sortBy.get();
     var sortDir = tmp.sortDir.get();
     
+    if(!sortBy) {
+      return Documents.find();
+    }
+    
     var sort = {};
     sort[sortBy]=sortDir;
     
