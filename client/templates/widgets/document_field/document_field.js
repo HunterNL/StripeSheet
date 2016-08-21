@@ -16,6 +16,18 @@ function isInTemplate(node,template) {
   return (templateInstance === template);
 }
 
+function nodeOrParenthasEditingTag(element) {
+  while(element) {
+    if(element.dataset.tag==="editing") {
+      return true;
+    }
+    
+    element=element.parentElement;
+  }
+
+  return false;
+}
+
 function eventOriginatedFromTemplate(e,template) {
   var currentNode = e.target;
   
@@ -28,6 +40,12 @@ function eventOriginatedFromTemplate(e,template) {
   }
   
   return false;
+}
+
+function submitUpdate(docId,dbField,value) {
+  var updateObj = {};
+  updateObj[dbField]=value;
+  Meteor.call("doc_update",docId,updateObj);
 }
 
 Template.document_field.onCreated(function(){
@@ -48,6 +66,8 @@ Template.document_field.onRendered(function(){
 Template.document_field.events({
   "click [data-action=edit]" :function (e,tmp) {
     if(e.target.dataset.action==="abort") return; //Prevent instant re-rediting
+    if(nodeOrParenthasEditingTag(e.target)) return;
+    
     
     
     tmp.editing.set(true);
@@ -57,16 +77,19 @@ Template.document_field.events({
     tmp.editing.set(false);
   },
   
-  "submit" : function (e,tmp) {
-    e.preventDefault();
+  "submit, change select" : function (e,tmp) {
+    if(e.type === "submit") {
+      e.preventDefault();
+    }
+    
+    console.log(e);
+    
     var field = this.field.dbField;
     var value = tmp.find("[data-field]").value;
+    console.log(this);
     
-    var updateObj = {};
-    updateObj[field]=value;
+    submitUpdate(this.document._id,field,value);
     
-    
-    Meteor.call("doc_update",this.document._id,updateObj);
     tmp.editing.set(false);
   },
   
@@ -89,6 +112,20 @@ Template.document_field.helpers({
   markdownClass(bool) {
     if(bool) {
       return "markdown";
+    }
+  },
+  
+  editingTag() {
+    if(Template.instance().editing.get()) {
+      var q={};
+      q["data-tag"]="editing";
+      return q;
+    }
+  },
+  
+  editingClass(){
+    if(Template.instance().editing.get()) {
+      return "editing";
     }
   }
 });

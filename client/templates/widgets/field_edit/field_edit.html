@@ -7,8 +7,12 @@
         {{/each}}
       </select>
     {{else}}
-      <input type={{getInputType field}} value={{getValue}} data-field={{field.dbField}}>
+      {{#if field.multiLine}}
+        <textarea data-field={{field.dbField}}>{{getValue}}</textarea>
+      {{else}}
+        <input type={{getInputType field}} value={{getValue}} data-field={{field.dbField}}>
+      {{/if}}
+      <input type="submit">
     {{/if}}
-    <input type="submit">
   </form>
 </template>

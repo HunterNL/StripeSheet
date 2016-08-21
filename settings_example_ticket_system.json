@@ -18,7 +18,8 @@
         "default" :"New description",
         "dbField" : "description",
         "addClass" : false,
-        "parseMarkdown" : true
+        "parseMarkdown" : true,
+        "multiLine" : true
       },{
         "name" : "priority",
         "type" : "choice",
