@@ -52,23 +52,31 @@ Template.document_field.onCreated(function(){
   this.editing = new ReactiveVar(false);
   
   this.onClick = function(e) {
-    if(!eventOriginatedFromTemplate(e,this)) {
+    if(!eventOriginatedFromTemplate(e,this)) {      
       this.editing.set(false);
     }
   }.bind(this);
+  
+  var tmp = this;
+  this.autorun(function () {
+    //TODO optimize me #performance
+    if(tmp.editing.get()) {
+      window.addEventListener("click",tmp.onClick);
+    } else {
+      window.removeEventListener("click",tmp.onClick);
+    }
+    
+  })
 });
 
 Template.document_field.onRendered(function(){
-  //TODO optimize me #performance
-  window.addEventListener("click",this.onClick);
+
 });
 
 Template.document_field.events({
   "click [data-action=edit]" :function (e,tmp) {
     if(e.target.dataset.action==="abort") return; //Prevent instant re-rediting
     if(nodeOrParenthasEditingTag(e.target)) return;
-    
-    
     
     tmp.editing.set(true);
   },
