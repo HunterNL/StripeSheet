@@ -1,10 +1,11 @@
 <template name="new_document">
-  <form class="new_document_form">
+  <tr class="new_document_form">
     {{#each field in fields}}
-      <td>{{>input_for_field field=field}}</td>
+      <td>{{>input_for_field field=field formId=formId}}</td>
     {{/each}}
     <td>
-      <input type="submit">
+      <form id="{{formId}}"></form>
+      <input type="submit" form="{{formId}}">
     </td>
-  </form>
+  </tr>
 </template>

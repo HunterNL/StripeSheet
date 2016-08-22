@@ -1,11 +1,11 @@
 <template name="input_for_field">
   {{#if isDropDown field}}
-    <select data-field={{field.dbField}}>
+    <select data-field={{field.dbField}} form={{formId}}>
       {{#each field.choices}}
         <option value={{this}}>{{this}}</option>
       {{/each}}
     </select>
   {{else}}
-    <input type={{getInputType field}} value={{field.default}} data-field={{field.dbField}}>
+    <input type={{getInputType field}} value={{field.default}} data-field={{field.dbField}} form={{formId}}>
   {{/if}}
 </template>

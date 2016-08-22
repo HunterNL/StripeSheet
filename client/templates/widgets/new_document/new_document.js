@@ -23,6 +23,8 @@ Template.new_document.events({
 });
 
 Template.new_document.helpers({
-
+  formId() {
+    return "new_document_form";
+  }
 });
 
