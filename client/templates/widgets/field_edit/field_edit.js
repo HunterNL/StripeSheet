@@ -10,7 +10,7 @@ Template.field_edit.onCreated(function(){
 });
 
 Template.field_edit.onRendered(function(){
-
+  this.find("[data-field]").focus();
 });
 
 Template.field_edit.events({
