@@ -53,6 +53,9 @@ Template.document_field.onCreated(function(){
   
   this.onClick = function(e) {
     if(!eventOriginatedFromTemplate(e,this)) {      
+      var data = this.data;
+      var value = this.find("[data-field]").value;
+      submitUpdate(data.document._id,data.field.dbField,value);
       this.editing.set(false);
     }
   }.bind(this);
